@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, withRouter } from 'react-router-dom';
-import Routes from '../routes/Routes';
+import { NavLink } from 'react-router-dom';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import {
   AppBar,
@@ -38,7 +37,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-const NavigationBar: React.FC = (props: any) => {
+const NavigationBar = () => {
   const classes = useStyles();
   const [isOpen, setIsOpen] = useState(false);
   const toggleDrawer = (open: boolean) => (
@@ -55,9 +54,7 @@ const NavigationBar: React.FC = (props: any) => {
     setIsOpen(open);
   };
 
-  const activeRoute = (routeName: any) => {
-    return props.location.pathname === routeName ? true : false;
-  }
+
   return (
     <div>
       <div className={classes.root}>
@@ -79,7 +76,35 @@ const NavigationBar: React.FC = (props: any) => {
           onKeyDown={toggleDrawer(false)}
         >
           <List>
-            {Routes.map((prop, key) => {
+            <NavLink to='/' style={{ textDecoration: 'none', color: 'black' }}>
+              <ListItem>
+                <ListItemIcon><HomeOutlinedIcon/></ListItemIcon>
+                <ListItemText primary='Home'/>
+              </ListItem>
+            </NavLink>
+            <NavLink to='/search' style={{ textDecoration: 'none', color: 'black' }}>
+            <ListItem>
+                <ListItemIcon><SearchOutlinedIcon/></ListItemIcon>
+                <ListItemText primary='Search' />
+              </ListItem>
+            </NavLink>
+            <NavLink to='/favorites' style={{ textDecoration: 'none', color: 'black' }}>
+            <ListItem>
+                <ListItemIcon><StarBorderOutlinedIcon/></ListItemIcon>
+                <ListItemText primary='Favorites'/>
+              </ListItem>
+            </NavLink>
+
+          </List>
+        </div>
+      </Drawer>
+    </div>
+  );
+};
+
+export default NavigationBar;
+
+/*             {Routes.map((prop, key) => {
               return (
                 <NavLink to={prop.path} style={{ textDecoration: 'none', color: 'black' }} key={key}>
                 <ListItem button selected={activeRoute(prop.path)}>
@@ -88,12 +113,4 @@ const NavigationBar: React.FC = (props: any) => {
                 </ListItem>
                 </NavLink>
               );
-            })}
-          </List>
-        </div>
-      </Drawer>
-    </div>
-  );
-};
-
-export default withRouter(NavigationBar);
+            })} */
