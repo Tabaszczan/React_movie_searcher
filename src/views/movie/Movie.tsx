@@ -7,7 +7,7 @@ import { Card, makeStyles, CardMedia, CardContent, Typography } from '@material-
 const useStyles = makeStyles({
     root: {
         minWidth: '250px',
-        alignItems: 'center',
+        alignItems: 'top',
         marginRight: 'auto',
         marginLeft: 'auto',
         maxWidth: 1500,
@@ -22,6 +22,9 @@ const useStyles = makeStyles({
         width: 500,
         padding: 10, 
     },
+    ratings: {
+      paddingLeft: 50,
+    }
 
 
 })
@@ -34,11 +37,8 @@ const Movie = () => {
         movieService.searchById(id).then(resp => {
             setMovie(resp)
         })
-    })
-
-
-
-
+    }, [id])
+    const splitstr = movie?.Actors.split(",")
 
     return(
       <Card className={classes.root} raised>
@@ -49,11 +49,31 @@ const Movie = () => {
             title={movie?.Title}
           />
           <CardContent >
-          <Typography component="h5" variant="h5">
+          <Typography component="h2" variant="h2">
             {movie?.Title}
           </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
-            Mac Miller
+          <Typography >
+            Released: {movie?.Released}
+          </Typography>
+          <Typography>
+            Genre: {movie?.Genre}
+          </Typography>
+          <Typography>
+            Plot: {movie?.Plot}
+          </Typography>
+          <Typography>
+            Actors: {splitstr?.map(actor =>(
+              <Typography className={classes.ratings}>
+                {actor}
+              </Typography>
+            ))}
+          </Typography>
+          <Typography>
+            Ratings: {movie?.Ratings.map(rate =>(
+              <Typography className={classes.ratings}>
+                {rate.Source} {rate.Value}
+              </Typography>
+            ))}
           </Typography>
         </CardContent>
       </Card>

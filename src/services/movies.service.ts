@@ -46,7 +46,7 @@ const API = {
     Title: string,
     Year: string,
     Rated: string,
-    Relased: string,
+    Released: string,
     Runtime: string,
     Genre: string,
     Director: string,
@@ -69,10 +69,6 @@ const API = {
     Website: string,
     Response: string,
   }
- 
-  
-
-  
   
   const movieService = {
     searchByName: async (name: string) => {
@@ -107,9 +103,7 @@ const API = {
       } catch (e) {
         console.log(e);
       }
-
-    },
-    
+    },   
   };
   
   export default movieService;

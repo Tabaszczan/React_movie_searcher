@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { Component } from 'react'
 
 
-const Favorites: React.FC = () => {
-    return (
-        <h1>Favorites</h1>
-    );
+class Favorites extends Component{
+    componentWillMount() {
+        console.log(123)
+    }
+    render() {
+        return (
+            <div>
+                <h1>NWM</h1>
+            </div>
+        )
+    }
 };
 
 
